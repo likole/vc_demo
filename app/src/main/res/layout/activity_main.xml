@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <cn.likole.vc.VisualizerView
+        android:id="@+id/visualizer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white"
+        app:numColumns="100"
+        app:renderColor="#3315FC"
+        app:renderRange="both"
+        app:renderType="pixel">
+
+    </cn.likole.vc.VisualizerView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:text="按住录音" />
+
+</RelativeLayout>
