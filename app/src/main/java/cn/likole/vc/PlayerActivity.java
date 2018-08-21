@@ -24,9 +24,9 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
     private TextView right;
     private int sum;
     private Button start;
-    private Button stop;
+    private Button convert;
     private TextView tv_filename;
-    private boolean pause = false;
+    private boolean pause = true;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -37,7 +37,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                     left.setText(formatTime(current / 1000 ));
                     seek.setProgress(prass);
                     if (!pause) {
-                        handler.sendEmptyMessageDelayed(1, 1000);//1 秒后继续更新
+                        handler.sendEmptyMessageDelayed(1, 100);//0.1秒后继续更新
                     }
                     break;
                 }
@@ -55,9 +55,9 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
         left = (TextView) findViewById(R.id.left);
         right = (TextView) findViewById(R.id.right);
         start = (Button) findViewById(R.id.start);
-        stop = (Button) findViewById(R.id.stop);
+        convert = (Button) findViewById(R.id.convert);
         start.setOnClickListener(this);
-        stop.setOnClickListener(this);
+        convert.setOnClickListener(this);
         tv_filename= (TextView) findViewById(R.id.tv_filename);
 
         //播放器初始化
@@ -100,10 +100,11 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
     @Override
     public void onPrepared(MediaPlayer mp) {
         start.setEnabled(true);
-        stop.setEnabled(true);
+        convert.setEnabled(true);
         seek.setEnabled(true);
         sum = mMediaPlayer.getDuration();
         right.setText(formatTime(sum / 1000 ));
+        pause=true;
     }
 
     @Override
@@ -111,19 +112,26 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
         start.setText("播放");
         seek.setProgress(0);
         mMediaPlayer.seekTo(0);
+        pause=true;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start:
-                pause = false;
-                handler.sendEmptyMessage(1);
-                mMediaPlayer.start();
+                if(pause){
+                    pause = false;
+                    handler.sendEmptyMessage(1);
+                    mMediaPlayer.start();
+                    start.setText("暂停");
+                }else{
+                    pause = true;
+                    mMediaPlayer.pause();
+                    start.setText("播放");
+                }
                 break;
-            case R.id.stop:
-                pause = true;
-                mMediaPlayer.pause();
+            case R.id.convert:
+
                 break;
         }
     }
