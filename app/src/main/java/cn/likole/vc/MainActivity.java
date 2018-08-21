@@ -1,9 +1,11 @@
 package cn.likole.vc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -72,6 +74,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         mAdapter = new ListViewAdapter(this, mDatas);
         mAdapter.setMode(Attributes.Mode.Single);
         mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(MainActivity.this,PlayerActivity.class);
+                intent.putExtra("filepath",mDatas.get(i).getAbsolutePath());
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -145,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 case MotionEvent.ACTION_UP:
                     myAudioRecorder.stopRecord();
                     btn_record.setText("按住录音");
+                    myAudioRecorder = MyAudioRecorder.getInstanse(false);
+                    myAudioRecorder.link(mVisualizerView);
                     updateData();
                     break;
                 default:

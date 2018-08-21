@@ -63,6 +63,23 @@ public class ListViewAdapter extends BaseSwipeAdapter {
             tv_time.setText(cal.getTime().toLocaleString()+"     "+file.length() / 1000 + "K");
         else
             tv_time.setText(cal.getTime().toLocaleString()+"     "+file.length() + "B");
+
+        final SwipeLayout sl = (SwipeLayout) convertView.findViewById(getSwipeLayoutResourceId(position));
+        final TextView delete  = (TextView) convertView.findViewById(R.id.delete);
+        delete.setTag(position);
+        delete.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                int pos = (Integer) delete.getTag();
+                File obj = mDatas.get(pos);
+                obj.delete();
+                Log.e("onClick", "........pos ...."+pos+" obj = "+obj);
+                mDatas.remove(obj);
+                notifyDataSetChanged();
+                sl.close();
+            }
+        });
     }
 
     @Override

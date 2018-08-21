@@ -1,51 +1,47 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_filename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="天空之城主题曲（宫崎骏）"
-        android:textColor="#F8F8F8"
-        android:textSize="18sp"
-        android:ellipsize="marquee"
         android:layout_centerInParent="true"
-        />
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:singleLine="true"
+        android:text=""
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_above="@+id/bottom"
-        android:gravity="center_vertical"
-        >
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:textColor="#F8F8F8"
-            />
+            android:text="00:00" />
 
         <SeekBar
             android:id="@+id/seek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:enabled="false"
-            />
+            android:enabled="false" />
 
         <TextView
             android:id="@+id/right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:textColor="#F8F8F8"
-            />
+            android:text="00:00" />
 
     </LinearLayout>
 
@@ -55,30 +51,40 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="5dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="播放"
-            android:textColor="#F8F8F8"
-            android:textSize="14sp"
+            android:background="@color/colorPrimary"
             android:enabled="false"
-            />
+            android:text="播放"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/stop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="暂停"
-            android:textSize="14sp"
-            android:textColor="#F8F8F8"
+            android:background="@color/colorPrimary"
             android:enabled="false"
-            />
+            android:text="暂停"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/convert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:enabled="false"
+        android:text="转换"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
 </RelativeLayout>
