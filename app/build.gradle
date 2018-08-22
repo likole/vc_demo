@@ -34,5 +34,6 @@ dependencies {
     compile 'com.squareup.okio:okio:1.15.0'
     compile 'com.squareup.okhttp3:okhttp:3.11.0'
     compile 'com.github.yuzhiqiang1993:zxing:2.1.8'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
     testCompile 'junit:junit:4.12'
 }
