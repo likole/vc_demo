@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -23,9 +24,8 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
     private TextView left;
     private TextView right;
     private int sum;
-    private Button start;
+    private ImageButton start;
     private Button convert;
-    private TextView tv_filename;
     private boolean pause = true;
     private Handler handler = new Handler() {
         @Override
@@ -37,7 +37,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                     left.setText(formatTime(current / 1000 ));
                     seek.setProgress(prass);
                     if (!pause) {
-                        handler.sendEmptyMessageDelayed(1, 100);//0.1秒后继续更新
+                        handler.sendEmptyMessageDelayed(1, 50);//0.05秒后继续更新
                     }
                     break;
                 }
@@ -54,17 +54,14 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
         setContentView(R.layout.activity_player);
         left = (TextView) findViewById(R.id.left);
         right = (TextView) findViewById(R.id.right);
-        start = (Button) findViewById(R.id.start);
+        start = (ImageButton) findViewById(R.id.start);
         convert = (Button) findViewById(R.id.convert);
         start.setOnClickListener(this);
         convert.setOnClickListener(this);
-        tv_filename= (TextView) findViewById(R.id.tv_filename);
-
         //播放器初始化
         mMediaPlayer = new MediaPlayer();
         try {
             mMediaPlayer.setDataSource(getIntent().getStringExtra("filepath"));
-            tv_filename.setText(getIntent().getStringExtra("filepath"));
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("PlayerActivity", "设置播放源异常");
@@ -109,7 +106,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        start.setText("播放");
+        start.setImageDrawable(getResources().getDrawable(R.drawable.play));
         seek.setProgress(0);
         mMediaPlayer.seekTo(0);
         pause=true;
@@ -123,11 +120,11 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                     pause = false;
                     handler.sendEmptyMessage(1);
                     mMediaPlayer.start();
-                    start.setText("暂停");
+                    start.setImageDrawable(getResources().getDrawable(R.drawable.pause));
                 }else{
                     pause = true;
                     mMediaPlayer.pause();
-                    start.setText("播放");
+                    start.setImageDrawable(getResources().getDrawable(R.drawable.play));
                 }
                 break;
             case R.id.convert:

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "cn.likole.vc"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -30,6 +30,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.blankj:utilcode:1.19.0'
     compile 'com.tyorikan:voice-recording-visualizer:1.0.3@aar'
-    compile "com.daimajia.swipelayout:library:1.2.0@aar"
+    compile 'com.daimajia.swipelayout:library:1.2.0@aar'
+    compile 'com.squareup.okio:okio:1.15.0'
+    compile 'com.squareup.okhttp3:okhttp:3.11.0'
     testCompile 'junit:junit:4.12'
 }

@@ -3,6 +3,9 @@ package cn.likole.vc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,12 +31,39 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private ListViewAdapter mAdapter;
     private List<File> mDatas;
     private String path;
+    private Toolbar mToolbar;
 
     private static String[] PERMISSION_AUDIO = {
             android.Manifest.permission.RECORD_AUDIO,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent intent=new Intent(MainActivity.this,SettingActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.action_about) {
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if (permission != android.content.pm.PackageManager.PERMISSION_GRANTED) {
             android.support.v4.app.ActivityCompat.requestPermissions(MainActivity.this, PERMISSION_AUDIO, 1);
         }
+
+//        toolbal
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("说话人转换Demo");
+        setSupportActionBar(mToolbar);
 
 //        可视化
         mVisualizerView = (VisualizerView) findViewById(R.id.visualizer);
@@ -77,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(MainActivity.this,PlayerActivity.class);
-                intent.putExtra("filepath",mDatas.get(i).getAbsolutePath());
+                Intent intent = new Intent(MainActivity.this, PlayerActivity.class);
+                intent.putExtra("filepath", mDatas.get(i).getAbsolutePath());
                 startActivity(intent);
             }
         });
@@ -137,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
      * 更新listview
      */
     private void updateData() {
-        List<File> tmp=getFileSort(path);
+        List<File> tmp = getFileSort(path);
         mDatas.clear();
         mDatas.addAll(tmp);
         mAdapter.notifyDataSetChanged();

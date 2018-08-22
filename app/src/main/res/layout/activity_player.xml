@@ -3,80 +3,125 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_filename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:ellipsize="marquee"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:singleLine="true"
-        android:text=""
-        android:textSize="18sp" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:gravity="center_vertical">
+        android:layout_above="@+id/target"
+        android:layout_marginBottom="20dp">
 
         <TextView
-            android:id="@+id/left"
+            android:id="@+id/tv_name"
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00" />
+            android:text="原音频"/>
 
-        <SeekBar
-            android:id="@+id/seek"
+        <LinearLayout
+            android:layout_below="@+id/tv_name"
+            android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00" />
+
+            <SeekBar
+                android:id="@+id/seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false" />
+
+            <TextView
+                android:id="@+id/right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_below="@+id/ll1"
+            android:id="@+id/start"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="播放控制"
+            android:src="@drawable/play"
+            android:theme="@style/RippleWhite" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/convert"
+        android:layout_marginBottom="20dp">
 
         <TextView
-            android:id="@+id/right"
+            android:id="@+id/tv_name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00" />
+            android:layout_marginLeft="5dp"
+            android:text="转换后音频"/>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/tv_name1"
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical">
 
-    <LinearLayout
-        android:id="@+id/bottom"
+            <TextView
+                android:id="@+id/left1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00" />
+
+            <SeekBar
+                android:id="@+id/seek1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false" />
+
+            <TextView
+                android:id="@+id/right1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_below="@+id/ll2"
+            android:id="@+id/start1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="播放控制"
+            android:src="@drawable/play"
+            android:theme="@style/RippleWhite" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/convert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_margin="5dp"
-            android:id="@+id/start"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:enabled="false"
-            android:text="播放"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <Button
-            android:layout_margin="5dp"
-            android:id="@+id/convert"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:enabled="false"
-            android:text="转换"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
+        android:background="@color/colorPrimary"
+        android:enabled="false"
+        android:text="转换"
+        android:textColor="@color/white" />
 
 </RelativeLayout>
