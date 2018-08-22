@@ -33,5 +33,6 @@ dependencies {
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
     compile 'com.squareup.okio:okio:1.15.0'
     compile 'com.squareup.okhttp3:okhttp:3.11.0'
+    compile 'com.github.yuzhiqiang1993:zxing:2.1.8'
     testCompile 'junit:junit:4.12'
 }
