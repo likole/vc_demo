@@ -98,7 +98,6 @@ public class VisualizerView extends FrameLayout {
     }
 
     /**
-     * receive volume from {@link RecordingSampler}
      *
      * @param volume volume from mic input
      */
