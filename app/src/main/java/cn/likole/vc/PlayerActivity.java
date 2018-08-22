@@ -311,8 +311,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                         File file = new File(getIntent().getStringExtra("filepath"));
                         SharedPreferences read = getSharedPreferences("VC",
                                 MODE_WORLD_READABLE);
-                        String address = read.getString("address", "");
-                        address += "convert";
+                        String address = read.getString("address1", "");
                         if (!RegexUtils.isURL(address)) {
                             ToastUtils.showLong("接口地址设置有误");
                             return;
@@ -362,6 +361,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                                         addLog(serviceResult.getMessage());
                                     }
                                 });
+                                return;
                             } else {
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -370,7 +370,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                                     }
                                 });
                                 //下载文件
-                                String targetUrl = read.getString("address", "") + "uploads/" + serviceResult.getTarget();
+                                String targetUrl = read.getString("address2", "")+ serviceResult.getTarget();
                                 Request targetRequest = new Request.Builder().url(targetUrl).get().build();
                                 Response targetResponse = mOkHttpClient.newCall(targetRequest).execute();
                                 if (targetResponse.isSuccessful()) {

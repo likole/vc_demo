@@ -23,11 +23,18 @@
     </android.support.design.widget.AppBarLayout>
 
     <EditText
-        android:id="@+id/et_address"
+        android:id="@+id/et_address1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bar"
         android:hint="转换接口地址" />
+
+    <EditText
+        android:id="@+id/et_address2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_address1"
+        android:hint="文件下载地址" />
 
     <Button
         android:layout_above="@+id/btn_save"

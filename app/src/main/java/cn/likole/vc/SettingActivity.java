@@ -18,7 +18,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private Toolbar mToolbar;
     private Button btn_scan;
     private Button btn_save;
-    private EditText et_address;
+    private EditText et_address1;
+    private EditText et_address2;
     private static String[] PERMISSION_CAMERA = {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -43,12 +44,13 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         btn_save.setOnClickListener(this);
         btn_scan= (Button) findViewById(R.id.btn_scan);
         btn_scan.setOnClickListener(this);
-        et_address= (EditText) findViewById(R.id.et_address);
+        et_address1= (EditText) findViewById(R.id.et_address1);
+        et_address2= (EditText) findViewById(R.id.et_address2);
 
         //读出地址
         SharedPreferences read = getSharedPreferences("VC",MODE_WORLD_READABLE);
-        String value = read.getString("address", "");
-        et_address.setText(value);
+        et_address1.setText(read.getString("address1", ""));
+        et_address2.setText(read.getString("address2", ""));
     }
 
 
@@ -61,7 +63,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.btn_save:
                 SharedPreferences.Editor editor = getSharedPreferences("VC",MODE_WORLD_WRITEABLE).edit();
-                editor.putString("address", et_address.getText().toString());
+                editor.putString("address1", et_address1.getText().toString());
+                editor.putString("address2", et_address2.getText().toString());
                 editor.commit();
                 finish();
                 break;
@@ -75,7 +78,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         if (requestCode == 0 && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-                et_address.setText(content);
+                et_address1.setText(content+"convert");
+                et_address2.setText(content+"uploads/");
             }
         }
     }
