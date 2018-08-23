@@ -1,5 +1,7 @@
 package cn.likole.vc;
 
+import java.util.List;
+
 /**
  * Created by likole on 8/22/18.
  */
@@ -9,6 +11,24 @@ public class ServiceResult {
     private String message;
     private String source;
     private String target;
+    private List<String> list;
+    private String ckpt;
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
+    }
+
+    public String getCkpt() {
+        return ckpt;
+    }
+
+    public void setCkpt(String ckpt) {
+        this.ckpt = ckpt;
+    }
 
     public int getCode() {
         return code;

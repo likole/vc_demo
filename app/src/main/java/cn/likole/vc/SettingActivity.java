@@ -39,7 +39,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         mToolbar= (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle("设置接口");
+        mToolbar.setTitle("接口地址设置");
         btn_save= (Button) findViewById(R.id.btn_save);
         btn_save.setOnClickListener(this);
         btn_scan= (Button) findViewById(R.id.btn_scan);
@@ -78,7 +78,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         if (requestCode == 0 && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
-                et_address1.setText(content+"convert");
+                et_address1.setText(content);
                 et_address2.setText(content+"uploads/");
             }
         }

@@ -209,8 +209,9 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
         if (id == R.id.action_settings) {
             Intent intent = new Intent(PlayerActivity.this, SettingActivity.class);
             startActivity(intent);
-        } else if (id == R.id.action_about) {
-
+        } else if (id == R.id.action_ckpt) {
+            Intent intent = new Intent(PlayerActivity.this, CkptActivity.class);
+            startActivity(intent);
         }
 
 
@@ -312,6 +313,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                         SharedPreferences read = getSharedPreferences("VC",
                                 MODE_WORLD_READABLE);
                         String address = read.getString("address1", "");
+                        address+="convert";
                         if (!RegexUtils.isURL(address)) {
                             ToastUtils.showLong("接口地址设置有误");
                             return;

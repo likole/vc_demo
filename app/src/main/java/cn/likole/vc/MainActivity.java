@@ -57,8 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         if (id == R.id.action_settings) {
             Intent intent=new Intent(MainActivity.this,SettingActivity.class);
             startActivity(intent);
-        } else if (id == R.id.action_about) {
-
+        } else if (id == R.id.action_ckpt) {
+            Intent intent=new Intent(MainActivity.this,CkptActivity.class);
+            startActivity(intent);
         }
 
 

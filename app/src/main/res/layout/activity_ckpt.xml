@@ -5,10 +5,10 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_alignParentTop="true"
         android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.v7.widget.Toolbar
@@ -22,36 +22,21 @@
             app:titleTextColor="#ffffff" />
     </android.support.design.widget.AppBarLayout>
 
-    <EditText
-        android:id="@+id/et_address1"
+    <TextView
+        android:id="@+id/tv_ckpt"
+        android:layout_margin="10dp"
+        android:textSize="14sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bar"
-        android:hint="服务端地址" />
+        android:layout_below="@id/bar"
+        android:text="目前检查点" />
 
-    <EditText
-        android:id="@+id/et_address2"
+    <ListView
+        android:id="@+id/lv_ckpt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_address1"
-        android:hint="文件下载地址" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_ckpt">
+    </ListView>
 
-    <Button
-        android:layout_above="@+id/btn_save"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/btn_scan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:text="扫描二维码" />
 
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:text="保存更改" />
 </RelativeLayout>
