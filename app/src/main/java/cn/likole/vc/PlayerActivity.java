@@ -368,6 +368,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        addLog("asr返回结果:"+serviceResult.getTxt());
                                         addLog("转换成功,正在下载");
                                     }
                                 });

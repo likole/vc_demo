@@ -13,6 +13,15 @@ public class ServiceResult {
     private String target;
     private List<String> list;
     private String ckpt;
+    private String txt;
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
 
     public List<String> getList() {
         return list;
