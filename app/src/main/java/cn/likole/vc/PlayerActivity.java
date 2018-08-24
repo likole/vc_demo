@@ -311,7 +311,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                         //获取文件和请求路径
                         File file = new File(getIntent().getStringExtra("filepath"));
                         SharedPreferences read = getSharedPreferences("VC",
-                                MODE_WORLD_READABLE);
+                                MODE_PRIVATE);
                         String address = read.getString("address1", "");
                         address+="convert";
                         if (!RegexUtils.isURL(address)) {

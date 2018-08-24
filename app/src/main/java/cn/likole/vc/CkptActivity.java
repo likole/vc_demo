@@ -38,7 +38,7 @@ public class CkptActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ckpt);
         SharedPreferences read = getSharedPreferences("VC",
-                MODE_WORLD_READABLE);
+                MODE_PRIVATE);
         address = read.getString("address1", "");
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("检查点信息");

@@ -48,7 +48,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         et_address2= (EditText) findViewById(R.id.et_address2);
 
         //读出地址
-        SharedPreferences read = getSharedPreferences("VC",MODE_WORLD_READABLE);
+        SharedPreferences read = getSharedPreferences("VC",MODE_PRIVATE);
         et_address1.setText(read.getString("address1", ""));
         et_address2.setText(read.getString("address2", ""));
     }
@@ -62,7 +62,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 startActivityForResult(intent, 0);
                 break;
             case R.id.btn_save:
-                SharedPreferences.Editor editor = getSharedPreferences("VC",MODE_WORLD_WRITEABLE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences("VC",MODE_PRIVATE).edit();
                 editor.putString("address1", et_address1.getText().toString());
                 editor.putString("address2", et_address2.getText().toString());
                 editor.commit();
