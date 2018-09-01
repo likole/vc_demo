@@ -64,6 +64,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
     private TextView tv_info;
 
 
+    private boolean converting=false;
     private Button convert;
     private Toolbar mToolbar;
     private String path;
@@ -305,6 +306,11 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                 }
                 break;
             case R.id.convert:
+                if(converting){
+                    ToastUtils.showLong("当前任务尚未完成,请耐心等待");
+                    break;
+                }
+                converting=true;
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -315,6 +321,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                         String address = read.getString("address1", "");
                         address+="convert";
                         if (!RegexUtils.isURL(address)) {
+                            converting=false;
                             ToastUtils.showLong("接口地址设置有误");
                             return;
                         }
@@ -339,11 +346,13 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                         try {
                             response = mOkHttpClient.newCall(request).execute();
                         } catch (IOException e) {
+                            converting=false;
                             e.printStackTrace();
                         }
 
                         //请求失败
                         if (response == null || !response.isSuccessful()) {
+                            converting=false;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -357,6 +366,7 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                         try {
                             final ServiceResult serviceResult = GsonUtils.fromJson(response.body().string(), ServiceResult.class);
                             if (serviceResult.getCode() != 0) {
+                                converting=false;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -394,10 +404,12 @@ public class PlayerActivity extends AppCompatActivity implements SeekBar.OnSeekB
                                         }
                                     });
                                 }
+                                converting=false;
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
                             ToastUtils.showLong("无法解析服务器响应结果");
+                            converting=false;
                             return;
                         }
                     }
